@@ -45,7 +45,7 @@ You have to use one of the following way:
 1. `cargo run`
 
     ```
-    sudo -E /home/ubuntu/.cargo/bin/cargo
+    sudo -E /home/ubuntu/.cargo/bin/cargo run
     ```
 
 2. Run the compiled binary
