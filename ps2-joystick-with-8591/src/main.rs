@@ -17,12 +17,10 @@
 /// `Error: PermissionDenied("/dev/gpiomem")`
 ///
 
-use std::{time::Duration, thread};
-use rppal::gpio::{Result};
+use std::{time::Duration, thread, error::Error};
 use pcf8591::{PCF8591, Pin};
-// use gpio_util::{GpioUtil, PinState};
 
-fn main() -> Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
     let mut converter = PCF8591::new("/dev/i2c-1", 0x48, 3.3).unwrap();
 
     loop {
@@ -38,10 +36,10 @@ fn main() -> Result<()> {
         let mut status: String = String::new();
 
         if x == 0 { status.push_str("Left,"); }
-        else if (x == 255) { status.push_str("Right,"); }
+        else if x == 255 { status.push_str("Right,"); }
 
         if y == 0 { status.push_str("Up,"); }
-        else if (y == 255) { status.push_str("Down,"); }
+        else if y == 255 { status.push_str("Down,"); }
 
         if z == 0 { status.push_str("Button pressed"); }
 
