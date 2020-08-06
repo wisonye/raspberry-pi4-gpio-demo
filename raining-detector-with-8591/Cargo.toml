@@ -1,0 +1,12 @@
+[package]
+name = "rainning-detector-with-8591"
+version = "0.1.0"
+authors = ["Wison Ye <wisonye@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pcf8591 = "0.1.1"
+rppal="0.11.3"
+gpio_util={ path="../gpio_util", version="0.1.0" }
