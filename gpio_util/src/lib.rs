@@ -12,15 +12,8 @@
 // sudo -E /home/ubuntu/.cargo/bin/cargo test -- --nocapture
 // ```
 
-use rppal::gpio::{
-    Gpio,
-    InputPin, OutputPin,
-    Result
-};
-use std::{
-    thread,
-    time::Duration
-};
+use rppal::gpio::{ Gpio, InputPin, OutputPin, Level, Result };
+use std::{ thread, time::Duration };
 
 ///
 #[derive(Debug)]
@@ -60,6 +53,30 @@ impl GpioUtil {
 
         if delay_after_reset.is_some() {
             thread::sleep(delay_after_reset.unwrap())
+        }
+    }
+
+    /// Keep reading state from button pin, only return when button pressed
+    /// and then released (`HIGH->LOW->HIGH`) happens.
+    pub fn block_until_button_pressed(button_pin: &InputPin) {
+        let mut init_high = false;
+        let mut pressed = false;
+        let mut released = false;
+        let button_read_period = Duration::from_millis(10);
+        loop {
+            let temp_button_state = button_pin.read();
+
+            // init high
+            if temp_button_state == Level::High && init_high == false { init_high = true; }
+            // Detect pressed
+            else if temp_button_state == Level::Low && init_high == true { pressed = true; }
+            // Detect released after pressing
+            else if temp_button_state == Level::High && init_high == true && pressed == true {
+                released = true;
+                return;
+            }
+
+            thread::sleep(button_read_period)
         }
     }
 }
