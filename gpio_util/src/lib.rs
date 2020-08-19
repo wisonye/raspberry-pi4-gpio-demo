@@ -16,7 +16,7 @@ use rppal::gpio::{ Gpio, InputPin, OutputPin, Level, Result };
 use std::{ thread, time::Duration };
 
 ///
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum  PinState {
     Low = 0,
     High = 1,
