@@ -62,3 +62,22 @@ You have to use one of the following way:
     ```
 
 <hr><br>
+
+## Demo videos
+
+1. [PS2 joystick](ps2-joystick-with-8591/src/main.rs)
+
+    ![PS2 joystick](preview-videos/ps2-joystick.jpg)
+
+2. [Button triggered laser Demo](button-control-laser/src/main.rs)
+
+    ![Button triggered laser Demo](preview-videos/button-triggered-laser.gif)
+
+3. [Laser security alarm system demo](laser-security-system-demo/src/main.rs)
+
+    ![Laser security alarm system demo](preview-videos/laser-security-alarm-system.gif)
+
+4. [Raining detector demo](raining-detector-with-8591/src/main.rs)
+
+    ![Raining detector demo](preview-videos/raining-detector.gif)
+
